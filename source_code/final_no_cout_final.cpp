@@ -244,7 +244,7 @@ int main(int argc, char* argv[]) {
         std::cout << rects[i].get(NORTH) << "\n";
     }
     */
-    std::cout << "rects num = " << rects.size() << "\n";
+    //std::cout << "rects num = " << rects.size() << "\n";
     std::ofstream fout(argv[2]);
     for (int i = 0; i < rects.size(); i++) {
         fout << "RECT " << rects[i].get(WEST) << ' ';
