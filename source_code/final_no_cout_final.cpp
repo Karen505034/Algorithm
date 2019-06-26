@@ -1,10 +1,10 @@
-#include <boost/polygon/polygon.hpp>
 #include <fstream>
 #include <iostream>
 #include <queue>
 #include <string>
 #include <utility>
 #include <vector>
+#include "boost/polygon/polygon.hpp"
 using namespace boost::polygon;
 using namespace boost::polygon::operators;
 #define STRINGIFY(x) #x
@@ -209,9 +209,9 @@ int main(int argc, char* argv[]) {
     }
     std::cout << "area " << area(polygon_set_results) << std::endl;
 */
-    std::vector<rectangle_data<int>> rects;
-    std::vector<rectangle_data<int>> rect1;
-    std::vector<rectangle_data<int>> rect2;
+    std::vector<rectangle_data<int> > rects;
+    std::vector<rectangle_data<int> > rect1;
+    std::vector<rectangle_data<int> > rect2;
     switch (op.back()) {
         case 2:
             polygon_set_results.get_rectangles(rects, VERTICAL);
@@ -222,14 +222,13 @@ int main(int argc, char* argv[]) {
         case 4:
             polygon_set_results.get_rectangles(rect1, VERTICAL);
             polygon_set_results.get_rectangles(rect2, HORIZONTAL);
-            if(rect1.size() < rect2.size()){
+            if (rect1.size() < rect2.size()) {
                 polygon_set_results.get_rectangles(rects, VERTICAL);
-            }
-            else{
+            } else {
                 polygon_set_results.get_rectangles(rects, HORIZONTAL);
             }
             break;
-            //concave_point(polygon_set_results);
+            // concave_point(polygon_set_results);
         default:
             break;
     }
@@ -244,7 +243,7 @@ int main(int argc, char* argv[]) {
         std::cout << rects[i].get(NORTH) << "\n";
     }
     */
-    //std::cout << "rects num = " << rects.size() << "\n";
+    // std::cout << "rects num = " << rects.size() << "\n";
     std::ofstream fout(argv[2]);
     for (int i = 0; i < rects.size(); i++) {
         fout << "RECT " << rects[i].get(WEST) << ' ';
@@ -304,12 +303,12 @@ void concave_point(polygon_set_type& polygon_set_result) {
     polygon_set_result.get(polygons);
     std::cout << "minimum_rectangle" << std::endl;
     // polygon_90_with_holes_data<int>::iterator_type it;
-    std::vector<std::vector<std::pair<point_type, int>>> concave_point_set(
+    std::vector<std::vector<std::pair<point_type, int> > > concave_point_set(
         polygons.size());
     for (int i = 0; i < polygons.size(); i++) {
         // std::cout << "winding " <<
         // view_as<polygon_90_concept>(polygons[i]).winding() << std::endl;
-        concave_point_set[i] = std::vector<std::pair<point_type, int>>();
+        concave_point_set[i] = std::vector<std::pair<point_type, int> >();
         // do until the point before end
         auto it_before_2 = polygons[i].end();
         auto it_before_1 = polygons[i].begin();
